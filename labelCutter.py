@@ -6,7 +6,7 @@ from PIL import Image
 from datetime import datetime
 
 CM_TO_POINTS = 28.3465
-datestamp = datetime.now().strftime("%d-%m-%y")
+datestamp = datetime.now().strftime("%d-%m-%Y_%H:%M")
 
 region1_cm = (0.3, 0.0, 10.3, 14.15)
 region2_cm = (10.7, 0.0, 20.75, 14.15)
@@ -34,6 +34,7 @@ if len(pdf_document) == 0:
 
 a6_width_points = 1240 * 72 / 300
 a6_height_points = 1748 * 72 / 300
+a6_size = (1240, 1748)
 
 output_pdf = FPDF(orientation='P', unit='pt', format=(a6_width_points, a6_height_points))
 
@@ -58,7 +59,6 @@ for page_number in range(len(pdf_document)):
     img1 = Image.frombytes("RGB", [pix1.width, pix1.height], pix1.samples)
     img2 = Image.frombytes("RGB", [pix2.width, pix2.height], pix2.samples)
 
-    a6_size = (1240, 1748)
     img1 = img1.resize(a6_size, Image.LANCZOS)
     img2 = img2.resize(a6_size, Image.LANCZOS)
 
