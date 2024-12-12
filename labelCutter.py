@@ -42,7 +42,14 @@ for page_number in range(len(pdf_document)):
     page = pdf_document[page_number]
 
     if page.rect.width < 11 * CM_TO_POINTS:
-        print(f"Skipping page {page_number + 1} as it is already A6 size.")
+        output_pdf.add_page()
+        pix = page.get_pixmap(dpi=400)
+        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        img = img.resize(a6_size, Image.LANCZOS)
+        img_path = f"{page_number + 1}_A6.png"
+        img.save(img_path)
+        output_pdf.image(img_path, 0, 0, a6_width_points, a6_height_points)
+        os.remove(img_path)
         continue
 
     pix1 = page.get_pixmap(clip=region1, dpi=400)
