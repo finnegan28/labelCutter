@@ -6,7 +6,6 @@ from PIL import Image
 from datetime import datetime
 
 CM_TO_POINTS = 28.3465
-datestamp = datetime.now().strftime("%d-%m-%Y_%H:%M")
 
 region1_cm = (0.3, 0.0, 10.3, 14.15)
 region2_cm = (10.7, 0.0, 20.75, 14.15)
@@ -74,7 +73,8 @@ for page_number in range(len(pdf_document)):
 
     os.remove(img1_path)
     os.remove(img2_path)
-
+    
+datestamp = datetime.now().strftime("%d-%m-%Y_%H-%M")
 output_pdf.output(f"ebay labels - {datestamp}.pdf")
 
 print("ebay labels successfully converted to A6")
