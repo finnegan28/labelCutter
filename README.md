@@ -14,6 +14,8 @@ This means that you can't print directly to your label printer.
 
 Like many others, I would have to manually fix all the labels and feed them to my printer. This is time consuming and if you have to do something more than once, then you might as well code something to take care of it.
 
+## Setup
+pip install -r requirements.txt
 
 ## Usage
 python3 labelCutter.py label.pdf
